@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5A5B0372-F697-4E4F-B9F7-C4266BF38FAD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="InforvixAPI.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\ISAP Api - Rest\InforvixApiRest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="InforvixAPI">
+        <MSBuild Projects="InforvixAPI.dproj"/>
+    </Target>
+    <Target Name="InforvixAPI:Clean">
+        <MSBuild Projects="InforvixAPI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="InforvixAPI:Make">
+        <MSBuild Projects="InforvixAPI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="InforvixApiRest">
+        <MSBuild Projects="..\..\ISAP Api - Rest\InforvixApiRest.dproj"/>
+    </Target>
+    <Target Name="InforvixApiRest:Clean">
+        <MSBuild Projects="..\..\ISAP Api - Rest\InforvixApiRest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="InforvixApiRest:Make">
+        <MSBuild Projects="..\..\ISAP Api - Rest\InforvixApiRest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="InforvixAPI;InforvixApiRest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="InforvixAPI:Clean;InforvixApiRest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="InforvixAPI:Make;InforvixApiRest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

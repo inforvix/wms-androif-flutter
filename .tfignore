@@ -1,0 +1,48 @@
+﻿################################################################################
+# Este arquivo .tfignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+#
+# Os itens locais correspondentes às especificações do arquivo neste arquivo não serão adicionadas ao controle de versão
+#. Este arquivo pode ser verificado para compartilhar exclusões com outros.
+#
+# Os caracteres curinga são * e ?. Os padrões são correspondentes recursivamente a menos que o padrão
+# seja prefixado pelo caractere \.
+#
+# Você pode preceder um caminho para um padrão para torná-lo mais específico. Ao fazer isso,
+# os caracteres curinga não são permitidos na porção do caminho.
+#
+# O caractere # no início de uma linha indica um comentário.
+#
+# O prefixo ! nega um padrão. Isso pode ser usado para re-incluir um item após
+# ele ter sido excluído por um arquivo .tfignore acima na árvore ou pela lista global de exclusões da Coleção
+# de Projetos de Equipe.
+#
+# O caractere / é interpretado como um caractere \ nas plataformas do Windows.
+#
+# Exemplos:
+#
+#  # Exclua todos os arquivos terminados em .txt em Alpha\Beta e todas as suas subpastas.
+#  Alpha\Beta\*.txt
+#
+#  # Exclua todos os arquivos terminados em .cpp nesta pasta apenas.
+#  \*.cpp
+#
+#  # Exclua todos os arquivos terminados em .cpp nesta pasta e todas as subpastas.
+#  *.cpp
+#
+#  # If "Contoso" é uma pasta, então, Contoso e todos os seus filhos são excluídos.
+#  # Se é uma pasta, então, apenas "Contoso" nesta pasta será excluído.
+#  \Contoso
+#
+#  # Se Help.exe for excluído por um arquivo .tfignore maior ou pela lista global de exclusões da Coleção de Projetos de Equipe
+#  #, então este padrão reinclui 
+#  # nesta pasta apenas.
+#  !\Help.exe    
+#
+################################################################################
+
+\.dart_tool
+\.idea
+\build
+\linux\flutter\ephemeral\.plugin_symlinks\device_info_plus
+\windows\flutter\ephemeral\.plugin_symlinks\device_info_plus
+\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows

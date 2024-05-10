@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.iml" filepath="$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-435051033/android.device_info_plus.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.iml" filepath="$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1289249107/android.permission_handler_android.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.iml" filepath="$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-823791206/android.sqflite.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.iml" filepath="$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-805908269/android.wakelock.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.iml" filepath="$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.androidTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/1803781230/com.gonoter.flutter_beep.android.flutter_beep.unitTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.iml" filepath="$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.androidTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-637569098/net.jonhanson.flutter_native_splash.android.flutter_native_splash.unitTest~1.iml" />
+    </modules>
+  </component>
+</project>
