@@ -26,7 +26,7 @@ class HttpControllerExpedicao {
         return dadosDb;
       }
     } catch (e) {
-      throw Exception(str == '' ? 'Sem conexão Wi-Fi! $e' : str);
+      throw Exception(str == '' ? 'Sem conexão com Wi-Fi! $e' : str);
     }
   }
 }
