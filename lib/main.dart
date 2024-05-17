@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
 import 'package:wms_android/views/login_page.dart';
-import 'package:wms_android/views/movimentacao/items_movimentacao_page.dart';
 
 void main() {
   runApp(const MyApp());
