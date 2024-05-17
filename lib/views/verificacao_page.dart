@@ -65,14 +65,7 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
                       fontSize: 20,
                     ),
                   ),
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: GestureDetector(
-                  onTap: () async {
+                  onFieldSubmitted: (value) async {
                     if (caixaController.text != '' &&
                         enderecoController.text != '') {
                       setState(() {
@@ -269,25 +262,10 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
-                  child: Container(
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Verificar',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
+              const SizedBox(height: 50),
             ],
           ),
           if (isLoading)

@@ -15,7 +15,8 @@ class EcommerceControler with ChangeNotifier {
   }
 
   Future<List<Ecommerce>> getByPedido(String pedido) async {
-    final expList = await Dbutil.getFilterRowsOr('ECOMMERCE', ['EXP_PEDIDO'], [pedido], 'id');
+    final expList = await Dbutil.getFilterRowsOr(
+        'ECOMMERCE', ['EXP_PEDIDO'], [pedido], 'id');
 
     return expList
         .map(
@@ -24,9 +25,11 @@ class EcommerceControler with ChangeNotifier {
               pro_codigo: exp['PRO_CODIGO'],
               exp_endereco: exp['EXP_ENDERECO'],
               exp_caixa: exp['EXP_CAIXA'],
-              exp_quantidade_separar: double.parse(exp['EXP_QUANTIDADE_SEPARAR'].toString()),
-              exp_quantidade_separada:
-                  exp['EXP_QUANTIDADE_SEPARADA'] == null ? 0 : double.parse(exp['EXP_QUANTIDADE_SEPARADA'].toString()),
+              exp_quantidade_separar:
+                  double.parse(exp['EXP_QUANTIDADE_SEPARAR'].toString()),
+              exp_quantidade_separada: exp['EXP_QUANTIDADE_SEPARADA'] == null
+                  ? 0
+                  : double.parse(exp['EXP_QUANTIDADE_SEPARADA'].toString()),
               usu_login: exp['USU_LOGIN'],
               exp_ignorado: exp['EXP_IGNORADO'],
               exp_volumes: exp['EXP_VOLUMES'],
@@ -67,7 +70,8 @@ class EcommerceControler with ChangeNotifier {
 
   Future<String> exportaPedidoById(String pedido, String volume) async {
     String str;
-    final expList = await Dbutil.getFilterRowsOr('ECOMMERCE', ['EXP_PEDIDO'], [pedido], 'id');
+    final expList = await Dbutil.getFilterRowsOr(
+        'ECOMMERCE', ['EXP_PEDIDO'], [pedido], 'id');
 
     try {
       //if (gTipoServiddor != 'INFORVIX') {
@@ -79,8 +83,10 @@ class EcommerceControler with ChangeNotifier {
               quantidade: exp['EXP_QUANTIDADE_SEPARADA'] ?? 0))
           .toList();
 
-      PedidoSincronismo ped =
-          PedidoSincronismo(usuario: usuLogin!, volumes: int.parse(volume), listaEnderecos: contagem);
+      PedidoSincronismo ped = PedidoSincronismo(
+          usuario: usuLogin!,
+          volumes: int.parse(volume),
+          listaEnderecos: contagem);
       str = await EcommerceHttpRepository().apiPutEcommerce(ped, pedido);
       //} else {
       // List<Ecommerce> contagem =

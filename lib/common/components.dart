@@ -37,7 +37,7 @@ class InforvixEdit extends StatelessWidget {
 }
 
 class InforvixButton extends StatelessWidget {
-  const InforvixButton({
+  InforvixButton({
     super.key,
     required this.title,
     required this.onClick,

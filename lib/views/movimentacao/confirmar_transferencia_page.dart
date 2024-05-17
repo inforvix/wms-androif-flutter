@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/common/components.dart';
+import 'package:wms_android/http/repository/movimentacao_repository.dart';
 import 'package:wms_android/model/item_transferencia_model.dart';
 
 class ConfirmarTransferenciaPage extends StatefulWidget {
@@ -82,7 +84,15 @@ class _ConfirmarTransferenciaPageState
             ),
             InforvixButton(
               title: 'Validar',
-              onClick: () {},
+              onClick: () async {
+                await MovimentacaoHttpRepository().apiPostMovimentacao(
+                    DadosGlobaisMovimentacao.importdora,
+                    DadosGlobaisMovimentacao.segmentoEstoqueOrigem,
+                    DadosGlobaisMovimentacao.segmentoEstoqueDestino,
+                    DadosGlobaisMovimentacao.marca,
+                    true,
+                    widget.itensTransferidos);
+              },
             )
           ],
         ),

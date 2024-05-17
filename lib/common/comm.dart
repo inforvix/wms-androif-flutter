@@ -9,6 +9,13 @@ String gChaveAut = '';
 String gTipoServiddor = '';
 String tenant = 'Teste';
 
+class DadosGlobaisMovimentacao {
+  static String importdora = 'ASTE';
+  static String segmentoEstoqueOrigem = '1';
+  static String segmentoEstoqueDestino = '1';
+  static String marca = '00003';
+}
+
 String urlExpedicaoOnline = 'http://192.168.1.86:9897/v1/expedicao';
 String urlBaseCliente =
     'https://app-aste-logistica-prod-pre.azurewebsites.net/logistica/coletor';
