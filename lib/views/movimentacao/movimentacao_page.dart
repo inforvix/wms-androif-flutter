@@ -3,8 +3,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/http/repository/importadora_api.dart';
 import 'package:wms_android/http/repository/poduto_http_repository.dart';
 import 'package:wms_android/http/repository/segmento_estoque_api.dart';
