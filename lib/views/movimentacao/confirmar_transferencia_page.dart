@@ -1,14 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/common/components.dart';
 import 'package:wms_android/http/repository/movimentacao_repository.dart';
 import 'package:wms_android/model/item_transferencia_model.dart';
-import 'package:wms_android/model/movimentacao.dart';
 
 class ConfirmarTransferenciaPage extends StatefulWidget {
   const ConfirmarTransferenciaPage({
@@ -107,10 +103,16 @@ class _ConfirmarTransferenciaPageState
                   if (DadosGlobaisMovimentacao.statusConsulta ==
                       '2 - FINALIZADO') {
                     print('Transferencia realizada com sucesso');
-                  }
-                } else {}
 
-                //Verificar o status, em caso de sucesso processar a validação e consultar para verificar se esta tudo certo e retornar o status de movimentcação realizada com sucesso
+                    //ZERAR TODAS AS VARIAVEIS
+                  } else {
+                    print(
+                        'Ocorreu o seguinte erro: ${DadosGlobaisMovimentacao.observacao}');
+                  }
+                } else {
+                  print(
+                      'Ocorreu o seguinte erro: ${DadosGlobaisMovimentacao.observacao}');
+                }
               },
             )
           ],

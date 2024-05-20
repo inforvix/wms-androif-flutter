@@ -73,6 +73,7 @@ class MovimentacaoHttpRepository {
       final responseData = jsonDecode(response.body);
 
       DadosGlobaisMovimentacao.statusConsulta = responseData['status'];
+      DadosGlobaisMovimentacao.observacao = responseData['observacao'];
     } catch (e) {
       print('Exceção na solicitação GET: $e');
     }
