@@ -12,7 +12,7 @@ class MovimentacaoHttpRepository {
       codigoMarca,
       bool usarReserva,
       List<ItemTransferenciaModel> itensTransferidos) async {
-    Uri url = Uri.parse('$urlBaseCliente/caixa');
+    Uri url = Uri.parse('$urlBaseCliente/transferencias/validar');
     try {
       final response = await http.post(
         url,
@@ -31,9 +31,50 @@ class MovimentacaoHttpRepository {
           "Itens": itensTransferidos.map((item) => item.toJson()).toList(),
         }),
       );
-      print(response.body);
+      final responseData = jsonDecode(response.body);
+
+      DadosGlobaisMovimentacao.transferenciaLogisticaId =
+          responseData['transferenciaLogisticaId'];
+      DadosGlobaisMovimentacao.status = responseData['status'];
+      DadosGlobaisMovimentacao.observacao = responseData['observacao'];
     } catch (e) {
       print('Exceção na solicitação POST: $e');
+    }
+  }
+
+  Future<void> apiPostMovimentacaoProcessar(int idTransferencia) async {
+    Uri url =
+        Uri.parse('$urlBaseCliente/transferencias/processar/$idTransferencia');
+    try {
+      await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Tenant": "$tenant",
+          "Api-Key": "eaHdZp9b14wGPZQUm0p4B3Owq7JMqES5",
+        },
+      );
+    } catch (e) {
+      print('Exceção na solicitação POST: $e');
+    }
+  }
+
+  Future<void> apiGetMovimentacaConsultar(int idTransferencia) async {
+    Uri url = Uri.parse('$urlBaseCliente/transferencias/$idTransferencia');
+    try {
+      final response = await http.get(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Tenant": "$tenant",
+          "Api-Key": "eaHdZp9b14wGPZQUm0p4B3Owq7JMqES5",
+        },
+      );
+      final responseData = jsonDecode(response.body);
+
+      DadosGlobaisMovimentacao.statusConsulta = responseData['status'];
+    } catch (e) {
+      print('Exceção na solicitação GET: $e');
     }
   }
 }

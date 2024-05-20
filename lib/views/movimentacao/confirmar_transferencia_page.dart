@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/common/components.dart';
 import 'package:wms_android/http/repository/movimentacao_repository.dart';
 import 'package:wms_android/model/item_transferencia_model.dart';
+import 'package:wms_android/model/movimentacao.dart';
 
 class ConfirmarTransferenciaPage extends StatefulWidget {
   const ConfirmarTransferenciaPage({
@@ -85,13 +88,29 @@ class _ConfirmarTransferenciaPageState
             InforvixButton(
               title: 'Validar',
               onClick: () async {
+                //Enviar a movimentacao
                 await MovimentacaoHttpRepository().apiPostMovimentacao(
                     DadosGlobaisMovimentacao.importdora,
                     DadosGlobaisMovimentacao.segmentoEstoqueOrigem,
                     DadosGlobaisMovimentacao.segmentoEstoqueDestino,
                     DadosGlobaisMovimentacao.marca,
-                    true,
+                    DadosGlobaisMovimentacao.transferiItemReservados,
                     widget.itensTransferidos);
+
+                if (DadosGlobaisMovimentacao.status == '1 - VALIDA') {
+                  await MovimentacaoHttpRepository()
+                      .apiPostMovimentacaoProcessar(
+                          DadosGlobaisMovimentacao.transferenciaLogisticaId);
+                  await MovimentacaoHttpRepository().apiGetMovimentacaConsultar(
+                      DadosGlobaisMovimentacao.transferenciaLogisticaId);
+
+                  if (DadosGlobaisMovimentacao.statusConsulta ==
+                      '2 - FINALIZADO') {
+                    print('Transferencia realizada com sucesso');
+                  }
+                } else {}
+
+                //Verificar o status, em caso de sucesso processar a validação e consultar para verificar se esta tudo certo e retornar o status de movimentcação realizada com sucesso
               },
             )
           ],

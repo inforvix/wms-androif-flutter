@@ -13,7 +13,12 @@ class DadosGlobaisMovimentacao {
   static String importdora = 'ASTE';
   static String segmentoEstoqueOrigem = '1';
   static String segmentoEstoqueDestino = '1';
-  static String marca = '00003';
+  static String marca = '00001';
+  static bool transferiItemReservados = false;
+  static int transferenciaLogisticaId = 0;
+  static String status = '';
+  static String statusConsulta = '';
+  static String observacao = '';
 }
 
 String urlExpedicaoOnline = 'http://192.168.1.86:9897/v1/expedicao';

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/common/components.dart';
 import 'package:wms_android/model/item_transferencia_model.dart';
 import 'package:wms_android/views/movimentacao/confirmar_transferencia_page.dart';
@@ -24,14 +25,22 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
   void inserirItemTransferencia(
       {String? caixaOrigem, caixaDestino, enderecoDestino, codigoProduto}) {
     setState(() {
-      itensTransferido.add(
-        ItemTransferenciaModel(
-          caixaAntiga: caixaOrigem,
-          caixaDestino: caixaDestino,
-          enderecoDestino: enderecoDestino,
-          codigoBarras: codigoProduto,
-        ),
-      );
+      bool itemExistente =
+          itensTransferido.any((item) => item.codigoBarras == codigoProduto);
+
+      if (!itemExistente) {
+        itensTransferido.add(
+          ItemTransferenciaModel(
+            caixaAntiga: caixaOrigem,
+            caixaDestino: caixaDestino,
+            enderecoDestino: enderecoDestino,
+            codigoBarras: codigoProduto,
+          ),
+        );
+        beepSucesso();
+      } else {
+        beepErro();
+      }
     });
   }
 
@@ -72,6 +81,9 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  onFieldSubmitted: (_) {
+                    beepSucesso();
+                  },
                 ),
               ),
               SizedBox(height: 20),
@@ -86,6 +98,9 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  onFieldSubmitted: (_) {
+                    beepSucesso();
+                  },
                 ),
               ),
               SizedBox(height: 20),
@@ -100,6 +115,9 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  onFieldSubmitted: (_) {
+                    beepSucesso();
+                  },
                 ),
               ),
               SizedBox(height: 20),
@@ -129,15 +147,92 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
               SizedBox(height: 30),
               InforvixButton(
                 onClick: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
                     builder: (context) {
-                      return ConfirmarTransferenciaPage(
-                        itensTransferidos: itensTransferido,
+                      return AlertDialog(
+                        title: const Text("Aviso"),
+                        content: Text(
+                          'Deseja transferir ou manter os itens reservados?',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        actions: [
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: GestureDetector(
+                              onTap: () async {
+                                DadosGlobaisMovimentacao
+                                    .transferiItemReservados = true;
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return ConfirmarTransferenciaPage(
+                                      itensTransferidos: itensTransferido,
+                                    );
+                                  },
+                                ));
+                              },
+                              child: Container(
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Transferir',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                DadosGlobaisMovimentacao
+                                    .transferiItemReservados = false;
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return ConfirmarTransferenciaPage(
+                                      itensTransferidos: itensTransferido,
+                                    );
+                                  },
+                                ));
+                              },
+                              child: Container(
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Manter',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       );
                     },
-                  ));
+                  );
                 },
-                title: 'Confirmar transferencia',
+                title: 'Conferir transferencia',
               ),
             ],
           ),
