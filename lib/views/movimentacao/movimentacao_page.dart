@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/http/repository/importadora_api.dart';
 import 'package:wms_android/http/repository/poduto_http_repository.dart';
 import 'package:wms_android/http/repository/segmento_estoque_api.dart';
@@ -24,9 +25,14 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
   List<Marca> _dadosMarca = [];
   bool _isLoading = true;
 
+  int indexTransportadora = 0;
+  int indexEstoqueOrigem = 0;
+  int indexEstoqueDestino = 0;
+  int indexMarca = 0;
+
   Future<void> buscarDados() async {
     try {
-      //Importadora
+      // Importadora
       String responseBodyImportadora =
           await ImportadoraApi().buscarImportadoras();
       List<dynamic> jsonDataImportadora = json.decode(responseBodyImportadora);
@@ -34,7 +40,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
           .map((item) => ImportadoraModel.fromJson(item))
           .toList();
 
-      //Segmento-estoque
+      // Segmento-estoque
       String responseBodySegmentoEstoque =
           await SegmentoEstoqueApi().buscarSegmentoEstoque();
       List<dynamic> jsonDataSegmentoEstoque =
@@ -43,7 +49,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
           .map((item) => SegmentoEstoqueModel.fromJson(item))
           .toList();
 
-      //Marca
+      // Marca
       String responseBodyMarca = await ProdutoHttpRepository().apiGetMarcas2();
       List<dynamic> jsonMarcas = json.decode(responseBodyMarca);
       List<Marca> dataMarcas =
@@ -71,12 +77,12 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuEntry> listaTranspostadoraDropDown = [];
+    List<DropdownMenuEntry> listaTransportadoraDropDown = [];
     List<DropdownMenuEntry> listaSegmentoEstoqueDropDown = [];
     List<DropdownMenuEntry> listaMarcaDropDown = [];
 
     for (var importadora in _dadosImportadora) {
-      listaTranspostadoraDropDown.add(
+      listaTransportadoraDropDown.add(
         DropdownMenuEntry(
           value: importadora.sigla,
           label: '${importadora.sigla!} - ${importadora.razao!}',
@@ -112,35 +118,65 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
         child: _isLoading
             ? CircularProgressIndicator()
             : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
-                  DropdownMenu(
+                  DropdownMenu<dynamic>(
                     label: Text('Importadora'),
                     width: MediaQuery.sizeOf(context).width * 0.8,
-                    dropdownMenuEntries: listaTranspostadoraDropDown,
+                    dropdownMenuEntries: listaTransportadoraDropDown,
+                    onSelected: (value) {
+                      setState(() {
+                        indexTransportadora = _dadosImportadora.indexWhere(
+                            (importadora) => importadora.sigla == value);
+                      });
+                    },
                   ),
-                  SizedBox(height: 30),
-                  DropdownMenu(
+                  DropdownMenu<dynamic>(
                     label: Text('Segmento Estoque Origem'),
                     width: MediaQuery.sizeOf(context).width * 0.8,
                     dropdownMenuEntries: listaSegmentoEstoqueDropDown,
+                    onSelected: (value) {
+                      setState(() {
+                        indexEstoqueOrigem = _dadosSegmentoEstoque.indexWhere(
+                            (segmento) => segmento.tipoEstoqueID == value);
+                      });
+                    },
                   ),
-                  SizedBox(height: 30),
-                  DropdownMenu(
+                  DropdownMenu<dynamic>(
                     label: Text('Segmento Estoque Destino'),
                     width: MediaQuery.sizeOf(context).width * 0.8,
                     dropdownMenuEntries: listaSegmentoEstoqueDropDown,
+                    onSelected: (value) {
+                      setState(() {
+                        indexEstoqueDestino = _dadosSegmentoEstoque.indexWhere(
+                            (segmento) => segmento.tipoEstoqueID == value);
+                      });
+                    },
                   ),
-                  SizedBox(height: 30),
-                  DropdownMenu(
+                  DropdownMenu<dynamic>(
                     label: Text('Marca'),
                     width: MediaQuery.sizeOf(context).width * 0.8,
                     dropdownMenuEntries: listaMarcaDropDown,
+                    onSelected: (value) {
+                      setState(() {
+                        indexMarca = _dadosMarca
+                            .indexWhere((marca) => marca.codigoMarca == value);
+                      });
+                    },
                   ),
-                  Spacer(),
                   GestureDetector(
                     onTap: () {
+                      DadosGlobaisMovimentacao.importdora =
+                          _dadosImportadora[indexTransportadora].sigla!;
+                      DadosGlobaisMovimentacao.segmentoEstoqueOrigem =
+                          _dadosSegmentoEstoque[indexEstoqueOrigem]
+                              .tipoEstoqueID!;
+                      DadosGlobaisMovimentacao.segmentoEstoqueDestino =
+                          _dadosSegmentoEstoque[indexEstoqueDestino]
+                              .tipoEstoqueID!;
+                      DadosGlobaisMovimentacao.marca =
+                          _dadosMarca[indexMarca].codigoMarca!;
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
                           return MovimentacaoItemPage();
@@ -176,7 +212,6 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
                 ],
               ),
       ),

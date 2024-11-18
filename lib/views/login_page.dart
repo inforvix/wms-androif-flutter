@@ -92,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       }),
                       if (value != null)
                         {
+                          usuarioGlobal = value,
                           usuLogin = value.usu_login,
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(

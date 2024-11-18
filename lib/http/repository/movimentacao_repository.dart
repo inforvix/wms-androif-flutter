@@ -38,7 +38,7 @@ class MovimentacaoHttpRepository {
       DadosGlobaisMovimentacao.status = responseData['status'];
       DadosGlobaisMovimentacao.observacao = responseData['observacao'];
     } catch (e) {
-      print('Exceção na solicitação POST: $e');
+      DadosGlobaisMovimentacao.observacao = e.toString();
     }
   }
 

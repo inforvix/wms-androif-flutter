@@ -22,6 +22,7 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
       appBar: AppBar(
         title: const Text('Verificação'),
       ),
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
           Column(
@@ -47,7 +48,7 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
@@ -265,7 +266,7 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
             ],
           ),
           if (isLoading)

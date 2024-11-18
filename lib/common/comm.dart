@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'package:flutter_beep/flutter_beep.dart';
+import 'package:wms_android/model/usuario.dart';
 
 String? usuLogin;
 double alturaDisponivel = 0.0;
@@ -8,12 +9,13 @@ double larguraDisponivel = 0.0;
 String gChaveAut = '';
 String gTipoServiddor = '';
 String tenant = 'Teste';
+Usuario? usuarioGlobal;
 
 class DadosGlobaisMovimentacao {
-  static String importdora = 'ASTE';
-  static String segmentoEstoqueOrigem = '1';
-  static String segmentoEstoqueDestino = '1';
-  static String marca = '00001';
+  static String importdora = '';
+  static String segmentoEstoqueOrigem = '';
+  static String segmentoEstoqueDestino = '';
+  static String marca = '';
   static bool transferiItemReservados = false;
   static int transferenciaLogisticaId = 0;
   static String status = '';
@@ -23,7 +25,7 @@ class DadosGlobaisMovimentacao {
 
 String urlExpedicaoOnline = 'http://192.168.1.86:9897/v1/expedicao';
 String urlBaseCliente =
-    'https://app-aste-logistica-prod-pre.azurewebsites.net/logistica/coletor';
+    'https://app-aste-logistica-stage.azurewebsites.net/logistica/coletor';
 String gIp = '';
 String gImei = '';
 String gFlEndereco = '';
@@ -68,5 +70,5 @@ beepSucesso() {
 
 class DadosGlobais {
   static const urlApiCliente =
-      'https://app-aste-logistica-prod-pre.azurewebsites.net/logistica/coletor';
+      'https://app-aste-logistica-stage.azurewebsites.net/logistica/coletor';
 }

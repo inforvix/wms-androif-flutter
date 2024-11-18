@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:wms_android/controller/inventario_controller.dart';
 import 'package:wms_android/http/http_inventario_controller.dart';
 import 'package:wms_android/http/http_produto_controller.dart';
@@ -78,7 +78,8 @@ class _DadosPageState extends State<DadosPage> {
       setState(() {
         _isLoading = true;
       });
-      Wakelock.enable();
+      WakelockPlus.enable();
+      //Wakeloc .enable();
       if (gTipoServiddor != 'INFORVIX') {
         if (dropdownValue == 'Selecione uma marca para atualizar') {
           showMensagem(context, 'Selecione uma Marca para baixar produtos',
@@ -116,7 +117,7 @@ class _DadosPageState extends State<DadosPage> {
       });
       //alertDialog(context, "Produtos importados");
       totalItens();
-      Wakelock.disable();
+      WakelockPlus.disable();
     }
   }
 
@@ -125,7 +126,7 @@ class _DadosPageState extends State<DadosPage> {
       setState(() {
         _isLoading = true;
       });
-      Wakelock.enable();
+      WakelockPlus.enable();
       if (gTipoServiddor != 'INFORVIX') {
         showDialog(
           barrierDismissible: false,
@@ -271,7 +272,7 @@ class _DadosPageState extends State<DadosPage> {
       });
       //alertDialog(context, "Produtos importados");
       totalItens();
-      Wakelock.disable();
+      WakelockPlus.disable();
     }
   }
 
