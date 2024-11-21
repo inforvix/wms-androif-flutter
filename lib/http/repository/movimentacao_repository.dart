@@ -31,12 +31,23 @@ class MovimentacaoHttpRepository {
           "Itens": itensTransferidos.map((item) => item.toJson()).toList(),
         }),
       );
+
       final responseData = jsonDecode(response.body);
+
+      print(responseData.toString());
 
       DadosGlobaisMovimentacao.transferenciaLogisticaId =
           responseData['transferenciaLogisticaId'];
       DadosGlobaisMovimentacao.status = responseData['status'];
-      DadosGlobaisMovimentacao.observacao = responseData['observacao'];
+
+      // Acessando observação do primeiro item na lista de 'itens'
+      final responseDataItens = responseData['itens'] as List<dynamic>;
+      if (responseDataItens.isNotEmpty) {
+        final itemZero = responseDataItens[0];
+        DadosGlobaisMovimentacao.observacao = itemZero['observacao'] ?? '';
+      } else {
+        DadosGlobaisMovimentacao.observacao = 'Nenhum item encontrado.';
+      }
     } catch (e) {
       DadosGlobaisMovimentacao.observacao = e.toString();
     }
@@ -46,7 +57,9 @@ class MovimentacaoHttpRepository {
     Uri url =
         Uri.parse('$urlBaseCliente/transferencias/processar/$idTransferencia');
     try {
-      await http.post(
+      print('Vou processar');
+
+      final response = await http.post(
         url,
         headers: {
           "Content-Type": "application/json",
@@ -54,6 +67,11 @@ class MovimentacaoHttpRepository {
           "Api-Key": "eaHdZp9b14wGPZQUm0p4B3Owq7JMqES5",
         },
       );
+
+      final responseData = jsonDecode(response.body);
+
+      DadosGlobaisMovimentacao.observacao =
+          'Processar: ' + responseData.toString();
     } catch (e) {
       print('Exceção na solicitação POST: $e');
     }
@@ -73,9 +91,8 @@ class MovimentacaoHttpRepository {
       final responseData = jsonDecode(response.body);
 
       DadosGlobaisMovimentacao.statusConsulta = responseData['status'];
-      DadosGlobaisMovimentacao.observacao = responseData['observacao'];
     } catch (e) {
-      print('Exceção na solicitação GET: $e');
+      print('Exceção na solicitação GETx: $e');
     }
   }
 }

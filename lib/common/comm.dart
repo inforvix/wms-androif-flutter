@@ -21,6 +21,7 @@ class DadosGlobaisMovimentacao {
   static String status = '';
   static String statusConsulta = '';
   static String observacao = '';
+  static int statusCodeProcessar = 0;
 }
 
 String urlExpedicaoOnline = 'http://192.168.1.86:9897/v1/expedicao';

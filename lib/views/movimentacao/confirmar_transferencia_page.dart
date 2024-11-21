@@ -55,24 +55,29 @@ class _ConfirmarTransferenciaPageState
         );
 
         if (DadosGlobaisMovimentacao.statusConsulta == '2 - FINALIZADO') {
+          await showMensagem(
+              context, 'Transferencia realizada com sucesso', 'Sucesso', 'ok');
+
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-                builder: (context) => MyHomePage(usu: usuarioGlobal!)),
+                builder: (context) => MyHomePage(
+                      usu: usuarioGlobal!,
+                    )),
             (route) => false,
           );
         } else {
           showMensagem(
               context,
               'Ocorreu o seguinte erro: ${DadosGlobaisMovimentacao.observacao}',
-              'FALHA',
+              'Falha 1',
               'ok');
         }
       } else {
         showMensagem(
             context,
             'Ocorreu o seguinte erro: ${DadosGlobaisMovimentacao.observacao}',
-            'FALHA',
+            'Falha 2',
             'ok');
       }
     } catch (e) {
