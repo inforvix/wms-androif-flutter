@@ -72,4 +72,7 @@ beepSucesso() {
 class DadosGlobais {
   static const urlApiCliente =
       'https://app-aste-logistica-stage.azurewebsites.net/logistica/coletor';
+
+  static String bodyEnviado = '';
+  static String bodyRetornado = '';
 }

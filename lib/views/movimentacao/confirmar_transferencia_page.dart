@@ -58,14 +58,10 @@ class _ConfirmarTransferenciaPageState
           await showMensagem(
               context, 'Transferencia realizada com sucesso', 'Sucesso', 'ok');
 
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MyHomePage(
-                      usu: usuarioGlobal!,
-                    )),
-            (route) => false,
-          );
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
         } else {
           showMensagem(
               context,
@@ -112,7 +108,7 @@ class _ConfirmarTransferenciaPageState
                         label: Container(
                             padding: EdgeInsets.all(16.0),
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'Produto',
                             )),
                       ),
@@ -126,9 +122,9 @@ class _ConfirmarTransferenciaPageState
                       GridColumn(
                         columnName: 'cx_destino',
                         label: Container(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               'Cx Destino',
                               overflow: TextOverflow.ellipsis,
                             )),
@@ -136,9 +132,16 @@ class _ConfirmarTransferenciaPageState
                       GridColumn(
                         columnName: 'endereco',
                         label: Container(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             alignment: Alignment.center,
-                            child: Text('Endereço')),
+                            child: const Text('Endereço')),
+                      ),
+                      GridColumn(
+                        columnName: 'quantidade',
+                        label: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            alignment: Alignment.center,
+                            child: const Text('Qtde')),
                       ),
                     ],
                   ),
@@ -157,7 +160,7 @@ class _ConfirmarTransferenciaPageState
             Positioned.fill(
               child: Container(
                 color: Colors.black.withOpacity(0.5), // Fundo semitransparente
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               ),
@@ -181,6 +184,8 @@ class ItensTransferidoDataSource extends DataGridSource {
                   columnName: 'cx_destino', value: item.caixaDestino),
               DataGridCell<String>(
                   columnName: 'endereco', value: item.enderecoDestino),
+              DataGridCell<String>(
+                  columnName: 'quantidade', value: item.quantidade.toString()),
             ]))
         .toList();
   }

@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:wms_android/common/comm.dart';
 import 'package:wms_android/http/repository/verificacao_http_repository.dart';
 import 'package:wms_android/model/verificacao.dart';
 
@@ -74,6 +75,7 @@ class _VerificacaoPageState extends State<VerificacaoPage> {
                       });
                       dados = await VerificacaoHttpRepository()
                           .apiGetEnderecoCaixa(caixaController.text);
+
                       if (dados[0].caixaEndereco != enderecoController.text) {
                         showDialog(
                           barrierDismissible: false,

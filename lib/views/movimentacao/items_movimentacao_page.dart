@@ -35,11 +35,19 @@ class _MovimentacaoItemPageState extends State<MovimentacaoItemPage> {
             caixaDestino: caixaDestino,
             enderecoDestino: enderecoDestino,
             codigoBarras: codigoProduto,
+            quantidade: 1,
           ),
         );
         beepSucesso();
       } else {
-        beepErro();
+        itensTransferido
+            .firstWhere((item) => item.codigoBarras == codigoProduto)
+            .quantidade = (itensTransferido
+                    .firstWhere((item) => item.codigoBarras == codigoProduto)
+                    .quantidade ??
+                0) +
+            1;
+        beepSucesso();
       }
     });
   }

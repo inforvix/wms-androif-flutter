@@ -36,6 +36,17 @@ class MovimentacaoHttpRepository {
 
       print(responseData.toString());
 
+      DadosGlobais.bodyRetornado = response.body;
+      DadosGlobais.bodyEnviado = jsonEncode(<String, dynamic>{
+        "Operacao": "2",
+        "Importadora": importadora,
+        "SegmentoOrigem": segmentoOrigem,
+        "SegmentoDestino": segmentoDestino,
+        "CodigoMarca": codigoMarca,
+        "UsarReserva": usarReserva,
+        "Itens": itensTransferidos.map((item) => item.toJson()).toList(),
+      }).toString();
+
       DadosGlobaisMovimentacao.transferenciaLogisticaId =
           responseData['transferenciaLogisticaId'];
       DadosGlobaisMovimentacao.status = responseData['status'];
@@ -57,9 +68,7 @@ class MovimentacaoHttpRepository {
     Uri url =
         Uri.parse('$urlBaseCliente/transferencias/processar/$idTransferencia');
     try {
-      print('Vou processar');
-
-      final response = await http.post(
+      await http.post(
         url,
         headers: {
           "Content-Type": "application/json",
@@ -67,11 +76,6 @@ class MovimentacaoHttpRepository {
           "Api-Key": "eaHdZp9b14wGPZQUm0p4B3Owq7JMqES5",
         },
       );
-
-      final responseData = jsonDecode(response.body);
-
-      DadosGlobaisMovimentacao.observacao =
-          'Processar: ' + responseData.toString();
     } catch (e) {
       print('Exceção na solicitação POST: $e');
     }

@@ -48,7 +48,6 @@ class VerificacaoHttpRepository {
           "caixaCodigoBarras": caixaCodigoBarras,
         }),
       );
-      print(response.body);
     } catch (e) {
       print('Exceção na solicitação POST: $e');
     }
